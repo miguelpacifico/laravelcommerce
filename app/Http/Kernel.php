@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce\Http;
+<?php namespace CodeCommerce\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -15,7 +15,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'CodeCpmmerce\Http\Middleware\VerifyCsrfToken',
+		'CodeCommerce\Http\Middleware\VerifyCsrfToken',
 	];
 
 	/**
@@ -24,9 +24,9 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'CodeCpmmerce\Http\Middleware\Authenticate',
+		'auth' => 'CodeCommerce\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'CodeCpmmerce\Http\Middleware\RedirectIfAuthenticated',
+		'guest' => 'CodeCommerce\Http\Middleware\RedirectIfAuthenticated',
 	];
 
 }

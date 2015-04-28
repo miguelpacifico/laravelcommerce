@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce\Http\Controllers;
+<?php namespace CodeCommerce\Http\Controllers;
 
 class WelcomeController extends Controller {
 

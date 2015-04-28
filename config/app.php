@@ -139,11 +139,11 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'CodeCpmmerce\Providers\AppServiceProvider',
-		'CodeCpmmerce\Providers\BusServiceProvider',
-		'CodeCpmmerce\Providers\ConfigServiceProvider',
-		'CodeCpmmerce\Providers\EventServiceProvider',
-		'CodeCpmmerce\Providers\RouteServiceProvider',
+		'CodeCommerce\Providers\AppServiceProvider',
+		'CodeCommerce\Providers\BusServiceProvider',
+		'CodeCommerce\Providers\ConfigServiceProvider',
+		'CodeCommerce\Providers\EventServiceProvider',
+		'CodeCommerce\Providers\RouteServiceProvider',
 
 	],
 

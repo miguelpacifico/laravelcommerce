@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce\Providers;
+<?php namespace CodeCommerce\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +16,7 @@ class BusServiceProvider extends ServiceProvider {
 		$dispatcher->mapUsing(function($command)
 		{
 			return Dispatcher::simpleMapping(
-				$command, 'CodeCpmmerce\Commands', 'CodeCpmmerce\Handlers\Commands'
+				$command, 'CodeCommerce\Commands', 'CodeCommerce\Handlers\Commands'
 			);
 		});
 	}

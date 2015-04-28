@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce\Console\Commands;
+<?php namespace CodeCommerce\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

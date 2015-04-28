@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce\Events;
+<?php namespace CodeCommerce\Events;
 
 abstract class Event {
 

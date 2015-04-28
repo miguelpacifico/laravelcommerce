@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce;
+<?php namespace CodeCommerce;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

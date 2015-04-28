@@ -1,4 +1,4 @@
-<?php namespace CodeCpmmerce\Exceptions;
+<?php namespace CodeCommerce\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
