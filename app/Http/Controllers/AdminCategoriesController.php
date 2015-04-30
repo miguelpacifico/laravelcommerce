@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class AdminCategoriesController extends Controller {
 
-	//
+	public function index()
+    {
+        return "Teste Cat";
+    }
 
 }
