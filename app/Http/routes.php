@@ -19,7 +19,6 @@ Route::get('home', 'HomeController@index');
 
 Route::group(['prefix' => 'admin'], function()
 {
-
     Route::group(['prefix' => 'categories'], function()
     {
         Route::get('/', [
@@ -45,7 +44,6 @@ Route::group(['prefix' => 'admin'], function()
         Route::put('{id}/update', [
             'as' => 'categories.update', 'uses' => 'AdminCategoriesController@update'
         ]);
-
     });
 
     Route::group(['prefix' => 'products'], function()
@@ -73,16 +71,8 @@ Route::group(['prefix' => 'admin'], function()
         Route::put('{id}/update', [
             'as' => 'products.update', 'uses' => 'AdminProductsController@update'
         ]);
-
     });
-
-
-    //Route::get('categories', 'AdminCategoriesController@index');
-
-    //Route::get('products', 'AdminProductsController@index');
 });
-
-
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

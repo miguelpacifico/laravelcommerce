@@ -16,6 +16,11 @@
         {!! Form::open(['route'=>['products.update',$product->id],'method'=>'put']) !!}
 
         <div class="form-group">
+            {!! Form::label('category','Category') !!}
+            {!! Form::select('category_id',$categories,$product->category->id,['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('name','Name') !!}
             {!! Form::text('name',$product->name,['class'=>'form-control']) !!}
         </div>
@@ -62,7 +67,7 @@
 
 
         <div class="form-group">
-            {!! Form::submit('Add Products',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Edit Product',['class'=>'btn btn-primary']) !!}
         </div>
 
         {!! Form::close() !!}

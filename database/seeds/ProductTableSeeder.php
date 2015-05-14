@@ -12,14 +12,15 @@ class ProductTableSeeder extends Seeder{
 
         $faker = Faker::create();
 
-        foreach(range(1,15) as $i)
+        foreach(range(1,100) as $i)
         {
             Product::create([
-                'name' => $faker->word($min = 5),
+                'name' => $faker->word(5),
                 'description' => $faker->sentence(),
-                'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 3000),
-                'featured' => $faker->boolean($chanceOfGettingTrue = 50),
-                'recommend' => $faker->boolean($chanceOfGettingTrue = 50)
+                'price' => $faker->randomFloat(2,5,99),
+                'featured' => $faker->boolean(42),
+                'recommend' => $faker->boolean(27),
+                'category_id' => $faker->numberBetween(1,15)
             ]);
         }
     }

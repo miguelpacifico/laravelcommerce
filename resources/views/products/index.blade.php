@@ -13,6 +13,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Category</th>
                 <th>Featured</th>
                 <th>Recommend</th>
                 <th>Action</th>
@@ -21,8 +22,9 @@
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
-                    <td>R$ {{ $product->price }}</td>
+                    <td>{{ str_limit($product->description,$limit = 50, $send = " ...") }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->category->name }}</td>
                     <td>
                         @if($product->featured == "0")
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -45,5 +47,7 @@
             @endforeach
 
         </table>
+
+        {!! $products->render() !!}
     </div>
 @endsection
