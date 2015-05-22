@@ -71,6 +71,27 @@ Route::group(['prefix' => 'admin'], function()
         Route::put('{id}/update', [
             'as' => 'products.update', 'uses' => 'AdminProductsController@update'
         ]);
+        //ROTAS IMAGENS
+        Route::group(['prefix' => 'images'], function(){
+
+            Route::get('{id}/product', [
+                'as' => 'products.images', 'uses' => 'AdminProductsController@images'
+            ]);
+
+            Route::get('create/{id}/product', [
+                'as' => 'products.images.create', 'uses' => 'AdminProductsController@createImage'
+            ]);
+
+            Route::post('store/{id}/product', [
+                'as' => 'products.images.store', 'uses' => 'AdminProductsController@storeImage'
+            ]);
+
+            Route::get('destroy/{id}/image', [
+                'as' => 'products.images.destroy', 'uses' => 'AdminProductsController@destroyImage'
+            ]);
+
+        });
+
     });
 });
 

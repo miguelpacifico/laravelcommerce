@@ -41,6 +41,7 @@
                     </td>
                     <td>
                         <a href="{{ route('products.edit',['id'=>$product->id])  }}" class="btn bg-warning">Edit</a>
+                        <a href="{{ route('products.images',['id'=>$product->id])  }}" class="btn bg-warning">Images</a>
                         <a href="{{ route('products.destroy',['id'=>$product->id])  }}" class="btn bg-danger">Delete</a>
                     </td>
                 </tr>
