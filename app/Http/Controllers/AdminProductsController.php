@@ -106,7 +106,13 @@ class AdminProductsController extends Controller {
         foreach($tagList as $item)
         {
             $result = \CodeCommerce\Tag::where('name',$item)->first();
-            array_push($tags_id,$result->id);
+            if($result == null)
+            {
+                $newTag = \CodeCommerce\Tag::create(['name' => $item]);
+                array_push($tags_id,$newTag->id);
+            }else{
+                array_push($tags_id,$result->id);
+            }
         }
         $product = $this->productsModel->find($id);
         $product->tags()->sync($tags_id);
