@@ -33,8 +33,10 @@ class AdminProductsController extends Controller {
     public function storage(Requests\RequestProduct $requestProduct)
     {
         $input = $requestProduct->all();
-        $product = $this->productsModel->fill($input);
-        $product->save();
+        $product = $this->productsModel->create($input);
+        $tags = explode(',',$requestProduct->get('tags'));
+
+        $this->setTags($product->id,$tags);
 
         return redirect()->route('products');
     }
@@ -49,13 +51,16 @@ class AdminProductsController extends Controller {
     public function update(Requests\RequestProduct $requestProduct, $id)
     {
         $this->productsModel->find($id)->update($requestProduct->all());
+
+        $tags = explode(',',$requestProduct->get('tags'));
+        $this->setTags($id,$tags);
+
         return redirect()->route('products');
     }
 
     public function destroy($id)
     {
         $this->productsModel->find($id)->delete();
-
         return redirect()->route('products');
     }
 
@@ -73,16 +78,10 @@ class AdminProductsController extends Controller {
 
     public function storeImage(Requests\ProductImageRequest $request, $id, ProductImage $productImage)
     {
-        //dd($request);
-
         $file = $request->file('image');
-
         $extension = $file->getClientOriginalExtension();
-
         $image = $productImage::create(['product_id'=>$id,'extension'=>$extension]);
-
         Storage::disk('public_local')->put($image->id.'.'.$extension,File::get($file));
-
         return redirect()->route('products.images',['id'=>$id]);
     }
 
@@ -95,13 +94,21 @@ class AdminProductsController extends Controller {
             Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
         }
 
-
-
         $product = $image->product;
         $image->delete();
 
         return redirect()->route('products.images',['id' => $product->id]);
-
     }
 
+    private function setTags($id, $tagList)
+    {
+        $tags_id = array();
+        foreach($tagList as $item)
+        {
+            $result = \CodeCommerce\Tag::where('name',$item)->first();
+            array_push($tags_id,$result->id);
+        }
+        $product = $this->productsModel->find($id);
+        $product->tags()->sync($tags_id);
+    }
 }

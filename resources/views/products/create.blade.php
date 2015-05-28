@@ -65,6 +65,10 @@
 
         <hr/>
 
+        <div class="form-group">
+            {!! Form::label('tags','Tags') !!}
+            {!! Form::textArea('tags',null,['class'=>'form-control']) !!}
+        </div>
 
         <div class="form-group">
             {!! Form::submit('Add Products',['class'=>'btn btn-primary']) !!}
