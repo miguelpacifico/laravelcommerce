@@ -13,10 +13,6 @@
 
 Route::pattern('id','[0-9]+');
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
 Route::group(['prefix' => 'admin'], function()
 {
     Route::group(['prefix' => 'categories'], function()
@@ -94,6 +90,18 @@ Route::group(['prefix' => 'admin'], function()
 
     });
 });
+
+
+
+Route::get('/', 'StoreController@index');
+
+Route::get('home', 'HomeController@index');
+
+Route::get('teste', 'StoreController@teste');
+
+Route::get('products/category/{id}', [
+    'as' => 'products.by.category', 'uses' => 'StoreController@categories'
+]);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
