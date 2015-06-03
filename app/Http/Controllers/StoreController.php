@@ -26,7 +26,7 @@ class StoreController extends Controller {
         return view('store.index',compact('categories','pFeatured','pRecommend'));
     }
 
-    public function Categories($id)
+    public function categories($id)
     {
         $category = $this->categoryModel->find($id);
         $categories = $this->categoryModel->all();

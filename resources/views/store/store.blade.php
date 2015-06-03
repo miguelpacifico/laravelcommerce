@@ -9,12 +9,7 @@
     <title>Home | E-Shop</title>
 
 
-    <link href="http://localhost:8000/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://localhost:8000/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://localhost:8000/css/prettyPhoto.css" rel="stylesheet">
-    <link href="http://localhost:8000/css/animate.css" rel="stylesheet">
-    <link href="http://localhost:8000/css/main.css" rel="stylesheet">
-    <link href="http://localhost:8000/css/responsive.css" rel="stylesheet">
+    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
 
 </head><!--/head-->
@@ -146,11 +141,9 @@
 
 
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.scrollUp.min.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/main.js"></script>
+
+<script src="{{ elixir('js/all.js') }}"></script>
+
 
 </body>
 </html>
