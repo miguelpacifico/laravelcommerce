@@ -5,16 +5,19 @@ use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
 use CodeCommerce\Product;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller {
 
     private $categoryModel;
+    private $tagModel;
 
-    public function __construct(Category $category)
+    public function __construct(Category $category, Tag $tag)
     {
         $this->middleware('guest');
         $this->categoryModel = $category;
+        $this->tagModel = $tag;
     }
 
     public function Index()
@@ -26,11 +29,30 @@ class StoreController extends Controller {
         return view('store.index',compact('categories','pFeatured','pRecommend'));
     }
 
-    public function categories($id)
+    public function category($id)
     {
-        $category = $this->categoryModel->find($id);
         $categories = $this->categoryModel->all();
+        $category = $this->categoryModel->find($id);
+        $products = Product::OfCategory($id)->get();
 
-        return view('store.products',compact('category','categories'));
+        return view('store.category',compact('products','categories','category'));
+    }
+
+    public function tag($id)
+    {
+        $categories = $this->categoryModel->all();
+        $tag = $this->tagModel->find($id);
+        $products = $tag->products;
+
+        return view('store.tag',compact('products','categories','tag'));
+    }
+
+
+    public function product($id)
+    {
+        $categories = Category::all();
+        $product = Product::find($id);
+
+        return view('store.product',compact('categories','product'));
     }
 }
