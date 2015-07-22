@@ -15,7 +15,7 @@ class StoreController extends Controller {
 
     public function __construct(Category $category, Tag $tag)
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
         $this->categoryModel = $category;
         $this->tagModel = $tag;
     }

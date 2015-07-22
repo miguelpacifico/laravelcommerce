@@ -1,20 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::pattern('id','[0-9]+');
 
-Route::group(['prefix' => 'admin'], function()
+Route::group(['prefix' => 'admin','middleware'=>'auth'], function()
 {
+
+    Route::get('/', [
+        'as' => 'admin.index', 'uses' => 'LoginController@admin'
+    ]);
+
+
     Route::group(['prefix' => 'categories'], function()
     {
         Route::get('/', [
@@ -92,8 +87,32 @@ Route::group(['prefix' => 'admin'], function()
 });
 
 
+Route::group(['prefix' => 'cart'], function(){
 
-Route::get('/', 'StoreController@index');
+
+    Route::get('/', [
+        'as' => 'cart', 'uses' => 'CartController@index'
+    ]);
+
+    Route::get('add/{id}', [
+        'as' => 'cart.add', 'uses' => 'CartController@add'
+    ]);
+
+    Route::get('remove/{id}', [
+        'as' => 'cart.remove', 'uses' => 'CartController@removeQtd'
+    ]);
+
+
+    Route::get('destroy/{id}', [
+        'as' => 'cart.destroy', 'uses' => 'CartController@destroy'
+    ]);
+
+});
+
+Route::get('/', [
+    'as' => 'store', 'uses' => 'StoreController@index'
+]);
+
 
 Route::get('category/{id}', [
     'as' => 'store.category', 'uses' => 'StoreController@category'
@@ -107,23 +126,13 @@ Route::get('tag/{id}', [
     'as' => 'store.tag', 'uses' => 'StoreController@tag'
 ]);
 
-Route::get('cart', [
-    'as' => 'cart', 'uses' => 'CartController@index'
+Route::get('checkout/placeOrder',[
+    'as' => 'checkout.place', 'uses' => 'CheckoutController@place'
 ]);
 
-Route::get('cart/add/{id}', [
-    'as' => 'cart.add', 'uses' => 'CartController@add'
+Route::get('auth/login', [
+    'as' => 'auth.login', 'uses' => 'LoginController@index'
 ]);
-
-Route::get('cart/remove/{id}', [
-    'as' => 'cart.remove', 'uses' => 'CartController@removeQtd'
-]);
-
-
-Route::get('cart/destroy/{id}', [
-    'as' => 'cart.destroy', 'uses' => 'CartController@destroy'
-]);
-
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -3,6 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated {
 
@@ -33,12 +34,19 @@ class RedirectIfAuthenticated {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->check())
-		{
-			return new RedirectResponse(url('/home'));
-		}
+        if ($this->auth->check()) {
 
-		return $next($request);
+            if(\Auth::user()->is_admin == 0)
+            {
+                return redirect()->route('cart');
+            }
+
+            if(\Auth::user()->is_admin == 1)
+            {
+                return redirect()->route('admin.index');
+            }
+        }
+        return $next($request);
 	}
 
 }

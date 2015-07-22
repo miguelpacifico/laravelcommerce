@@ -14,7 +14,6 @@ class AdminProductsController extends Controller {
 
     public function __construct(Product $product)
     {
-        $this->middleware('guest');
         $this->productsModel = $product;
     }
 

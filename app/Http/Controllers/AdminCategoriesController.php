@@ -13,7 +13,6 @@ class AdminCategoriesController extends Controller {
 
     public function __construct(Category $categoryModel)
     {
-        $this->middleware('guest');
         $this->categoryModel = $categoryModel;
     }
 
