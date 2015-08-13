@@ -23,7 +23,6 @@ class CartController extends Controller {
         if(!Session::has('cart')){
             Session::set('cart',$this->cart);
         }
-
         return view('store.cart',['cart' => Session::get('cart')]);
     }
 
@@ -42,7 +41,9 @@ class CartController extends Controller {
 
         $cart->add($id,$product->name,$product->price,$urlImage);
 
-        Session::setFacadeApplication('cart',$cart);
+        //Session::setFacadeApplication('cart',$cart);
+
+        Session::set('cart',$cart);
 
         return redirect()->route('cart');
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model {
 
-	protected $fillable = [
+    protected $fillable = [
         'category_id',
         'name',
         'description',
@@ -16,6 +16,11 @@ class Product extends Model {
     public function images()
     {
         return $this->hasMany('CodeCommerce\ProductImage');
+    }
+
+    public function items()
+    {
+        return $this->hasMany('CodeCommerce\OrderItem');
     }
 
     public function category()

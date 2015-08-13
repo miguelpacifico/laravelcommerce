@@ -2,7 +2,7 @@
 
 Route::pattern('id','[0-9]+');
 
-Route::group(['prefix' => 'admin','middleware'=>'auth'], function()
+Route::group(['prefix' => 'admin','middleware'=>'auth','middleware'=>'auth.admin'], function()
 {
 
     Route::get('/', [
@@ -130,11 +130,15 @@ Route::get('checkout/placeOrder',[
     'as' => 'checkout.place', 'uses' => 'CheckoutController@place'
 ]);
 
+Route::get('checkout/order',[
+    'as' => 'checkout.order', 'uses' => 'CheckoutController@order'
+]);
+
 Route::get('auth/login', [
     'as' => 'auth.login', 'uses' => 'LoginController@index'
 ]);
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
 ]);

@@ -5,6 +5,7 @@ use CodeCommerce\Http\Controllers\Controller;
 
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
+use CodeCommerce\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -15,27 +16,25 @@ class CheckoutController extends Controller {
         $this->middleware('auth');
     }
 
-	public function place(Order $orderModel, OrderItem $orderItem)
+    public function place(Order $orderModel, OrderItem $orderItem)
     {
-        if(!Session::has('cart'))
-        {
+        if (!Session::has('cart')) {
             return "sem itens";
         }
 
         $cart = Session::get('cart');
 
-        if($cart->getTotal() > 0)
-        {
-            $order = $orderModel->create(['user_id'=> \Auth::user()->id,'total'=>$cart->getTotal()]);
+        if ($cart->getTotal() > 0) {
+            $order = $orderModel->create(['user_id' => \Auth::user()->id, 'total' => $cart->getTotal()]);
 
-            foreach($cart->all() as $k=>$item)
-            {
-                $order->items()->create(['product_id'=>$k,'price'=>$item['price'],'qtd'=>$item['qtd']]);
+            foreach ($cart->all() as $k => $item) {
+                $order->items()->create(['product_id' => $k, 'price' => $item['price'], 'qtd' => $item['qtd']]);
             }
             Session::forget('cart');
-            return redirect()->route('store');
+
+            //dd($order->items);
+            return view('store.checkout', compact('order'));
         }
 
     }
-
 }

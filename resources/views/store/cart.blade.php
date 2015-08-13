@@ -29,7 +29,7 @@
                                 <p>Código: {{ $k }}</p>
                             </td>
                             <td class="cart_price">
-                                R$ {{ number_format($item['price'],2,",",".") }} kk
+                                R$ {{ number_format($item['price'],2,",",".") }}
                             </td>
                             <td class="cart_quantity">
                                 {{$item['qtd']}}

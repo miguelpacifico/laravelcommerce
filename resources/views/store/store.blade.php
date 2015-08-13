@@ -55,7 +55,24 @@
                             <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
                             <li><a href="http://localhost:8000/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="http://localhost:8000/cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
-                            <li><a href="http://localhost:8000/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+
+
+                            <ul class="nav navbar-nav navbar-right">
+                                @if (Auth::guest())
+                                    <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                                    <li><a href="{{ url('/auth/register') }}"><i class="fa fa-lock"></i> Register</a></li>
+                                @else
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-lock"></i> {{ Auth::user()->name }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            </ul>
+
+
+
                         </ul>
                     </div>
                 </div>
@@ -84,7 +101,13 @@
                                     <li><a href="product-details.html">Product Details</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="login.html">Login</a></li>
+
+                                    @if (\Auth::guest())
+                                        <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                                    @else
+                                        <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                                    @endif
+
                                 </ul>
                             </li>
 
