@@ -52,20 +52,18 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="http://localhost:8000/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="http://localhost:8000/cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
+                            <li><a href="{{ route('account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
+                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
 
 
                             <ul class="nav navbar-nav navbar-right">
                                 @if (Auth::guest())
                                     <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
-                                    <li><a href="{{ url('/auth/register') }}"><i class="fa fa-lock"></i> Register</a></li>
                                 @else
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-lock"></i> {{ Auth::user()->name }} <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
+                                            <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-lock"></i> Sair</a></li>
                                         </ul>
                                     </li>
                                 @endif

@@ -113,7 +113,6 @@ Route::get('/', [
     'as' => 'store', 'uses' => 'StoreController@index'
 ]);
 
-
 Route::get('category/{id}', [
     'as' => 'store.category', 'uses' => 'StoreController@category'
 ]);
@@ -126,13 +125,23 @@ Route::get('tag/{id}', [
     'as' => 'store.tag', 'uses' => 'StoreController@tag'
 ]);
 
-Route::get('checkout/placeOrder',[
-    'as' => 'checkout.place', 'uses' => 'CheckoutController@place'
-]);
 
-Route::get('checkout/order',[
-    'as' => 'checkout.order', 'uses' => 'CheckoutController@order'
-]);
+Route::group(['middleware'=>'auth'], function() {
+
+    Route::get('checkout/placeOrder',[
+        'as' => 'checkout.place', 'uses' => 'CheckoutController@place'
+    ]);
+
+    Route::get('checkout/order',[
+        'as' => 'checkout.order', 'uses' => 'CheckoutController@order'
+    ]);
+
+    Route::get('account/orders',[
+        'as' => 'account.orders', 'uses' => 'AccountController@orders'
+    ]);
+
+});
+
 
 Route::get('auth/login', [
     'as' => 'auth.login', 'uses' => 'LoginController@index'
